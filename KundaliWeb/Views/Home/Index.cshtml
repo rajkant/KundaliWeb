@@ -1,0 +1,238 @@
+﻿@using Microsoft.Extensions.Caching.Memory
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model KundaliWeb.Models.Persons
+@inject IHttpContextAccessor Accessor
+@inject IMemoryCache cache
+
+<div class="text-center">
+    @* <h2 class="display-4">Welcome</h2> *@
+    <div class="row">
+        <div class="col-sm-3 well">            
+            @using (Html.BeginForm("Submit", "Home", FormMethod.Post))
+            {
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th colspan="2" align="center">Person Details</th>
+                    </tr>
+                    <tr>
+                        <td>EmailId: </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.PersonId)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name: </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Birth City: </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.City)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State: </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.State)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Country: </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Country)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Birth: </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BirthDateTime, new { @type = "datetime-local", @class = "form-control datepicker table-condensed" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center"><input type="submit" value="Submit" class="btn btn-primary" /></td>
+                        <td align="left"><input type="submit" value="Clear" class="btn btn" /></td>
+                    </tr>
+                </table>
+            }<br/>                     
+            @if (Model.positions != null)
+            {
+                <p>Ascendant Western: @Html.DisplayFor(modelItem => Model.AscendantW)</p>
+                <p>Ascendant Eastern: @Html.DisplayFor(modelItem => Model.AscendantE)</p>
+                <table class="table">
+                    <tr>
+                        <th colspan="2" align="center">Birth Chart : Western / Vedic </th>
+                    </tr>
+                    @foreach (var item in Model.positions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Planet)
+                                @Html.DisplayFor(modelItem => item.retro):
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sign)
+                            </td>
+                        </tr>
+                    }
+                </table>
+              @*   <table class="table">
+                    <tr>
+                        <th colspan="2" align="center">Ascendant Chart </th>
+                    </tr>
+                    @foreach (var item in Model.align)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.house)                                
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sign)
+                            </td>
+                        </tr>
+                    }
+                </table> *@
+            }
+            else
+            {                
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    @* <p><strong>Hey!</strong></p> *@
+                    Lets find our about your future
+                </div>
+                <div class="well">
+                    <p><a href="#">Profile</a></p>
+                    <img src="https://www.w3schools.com/html/pic_trulli.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                </div>
+                <div class="well">
+                    <p><a href="#">Interests</a></p>
+                    <p>
+                        <span class="label label-default">News</span>
+                        <span class="label label-primary">W3Schools</span>
+                        <span class="label label-success">Labels</span>
+                        <span class="label label-info">Football</span>
+                        <span class="label label-warning">Gaming</span>
+                        <span class="label label-danger">Friends</span>
+                    </p>
+                </div>               
+            }
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <p contenteditable="true">Status: Do you like this website?</p>
+                            <button type="button" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-sm-12">
+                    <div class="well">
+                    @Accessor.HttpContext.Session.GetString("details")
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @* <div class="col-sm-3">
+                    <div class="well">
+                        <p>John</p>
+                        <img src="images\bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                    </div>
+                </div> *@
+                <div class="col-sm-12">
+                    <div class="well">
+                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @* <div class="col-sm-3">
+                    <div class="well">
+                        <p>Bo</p>
+                        <img src="images\bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                    </div>
+                </div> *@
+                <div class="col-sm-12">
+                    <div class="well">
+                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+               @*  <div class="col-sm-3">
+                    <div class="well">
+                        <p>Jane</p>
+                        <img src="images\bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                    </div>
+                </div> *@
+                <div class="col-sm-12">
+                    <div class="well">
+                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+               @*  <div class="col-sm-3">
+                    <div class="well">
+                        <p>Anja</p>
+                        <img src="images\bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                    </div>
+                </div> *@
+                <div class="col-sm-12">
+                    <div class="well">
+                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 well">            
+            @if (cache.Get("positions") != null)
+            {
+                <b>Current Positions</b>
+                <table class="table">
+                    @* <tr>
+                        <th>Planet</th>
+                        <th>House</th>
+                    </tr> *@
+                    @foreach (var item in cache.GetC<List<Positions>>("positions"))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Planet)
+                                @Html.DisplayFor(modelItem => item.retro)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sign)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                 <div class="thumbnail">
+                <p>Upcoming Events:</p>
+                <img src="images\paris.jpg" alt="Paris" width="400" height="300">
+                <p><strong>Paris</strong></p>
+                <p>Fri. 27 November 2015</p>
+                <button class="btn btn-primary">Info</button>
+                 </div>
+            }
+        </div>
+    </div>
+</div> 
+@* <div>
+        @Accessor.HttpContext.Session.GetString("details")
+    </div> *@
+
+@* <p align="left">@Html.Raw(@ViewData["Message"])</p> *@
+
+
