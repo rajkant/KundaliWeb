@@ -39,6 +39,12 @@ namespace KundaliWeb
                 pattern: "{controller=Home}/{action=Index}/{id?}");
                 //.WithStaticAssets();
 
+            app.MapGet("/index.html", (HttpContext ctx) =>
+            {
+                ctx.Response.Redirect("/", permanent: false);
+                return Task.CompletedTask;
+            });
+
             app.Run();
         }
     }

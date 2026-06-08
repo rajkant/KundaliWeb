@@ -307,8 +307,7 @@ namespace VedAstro.Library
                 return parsedHoroscope;
             }
             catch (Exception e)
-            {
-                LibLogger.Debug($"Failed to parse:\n{planetInput.ToString()}");
+            { 
 
                 return PlanetName.Empty;
             }

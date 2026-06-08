@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>c45f1971-ef77-4559-ab6f-f60f27b1cfd1</UserSecretsId>
@@ -16,11 +16,8 @@
 
   <ItemGroup>
 	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	<PackageReference Include="SwissEphNet" Version="2.8.0.2" />
+	  <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
+	  <PackageReference Include="AASharp" Version="2.12.0" />
   </ItemGroup>
-
-	<ItemGroup>
-		<Content Include="ephe\**">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
 </Project>

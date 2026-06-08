@@ -154,8 +154,7 @@ namespace VedAstro.Library
                 return parsedEnum;
             }
             catch (Exception e)
-            {
-                LibLogger.Debug($"Failed to parse:\n{planetInput.ToString()}");
+            {  
 
                 return ZodiacName.Empty;
             }

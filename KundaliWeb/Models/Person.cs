@@ -2,6 +2,14 @@
 
 namespace KundaliWeb.Models
 {
+    public class TimelineEvent
+    {
+        public int Year { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Icon { get; set; }
+    }
+
     public class Persons
     {
         public string PersonId { get; set; }
@@ -20,7 +28,8 @@ namespace KundaliWeb.Models
         public List<Positions> positions { get; set; }
 
         public List<HouseAlign> align { get; set; }
+        
+        public List<TimelineEvent> Timeline { get; set; } = new List<TimelineEvent>();
     }
-
 }
 
